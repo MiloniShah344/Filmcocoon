@@ -3,13 +3,14 @@ import Jamnapar from '../assets/jamnapaar.jpg'
 import Bhootni from '../assets/bhootni.jpg'
 import vitaminStree from '../assets/Vitamin-stree.jpg'
 import fivestar from '../assets/5star.jpg'
-import anurakti from '../assets/assets/Anurakti.png'
-import atindriya from '../assets/assets/Atindriya.png'
-import block from '../assets/assets/Block.png'
-import dieShow from '../assets/assets/Die Show.png'
-import ekBaarPhir from '../assets/assets/Ek baar phir.png'
-import heteropia from '../assets/assets/Heterotopia.png'
-import oneNight from '../assets/assets/One Night.png'
+import anurakti from '../assets/Anurakti.png'
+import atindriya from '../assets/Atindriya.png'
+import block from '../assets/Block.png'
+import dieShow from '../assets/Die Show.png'
+import ekBaarPhir from '../assets/Ek baar phir.png'
+import heteropia from '../assets/Heterotopia.png'
+import oneNight from '../assets/One Night.png'
+import shrutiOswal from '../assets/shrutiOswal.jpeg'
 
 // Complete Portfolio Data for FilmCocoon
 export const portfolioData = {
@@ -95,20 +96,20 @@ export const portfolioData = {
       platform: 'YouTube',
       featured: true
     },
-    {
-      id: 9,
-      title: 'Hair Growth Advertisement',
-      description: 'Creative commercial showcasing product benefits with visual storytelling',
-      thumbnail: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80',
-      videoUrl: 'https://www.instagram.com/reel/DFeuJ8vITfM/',
-      platform: 'Instagram',
-      featured: false
-    },
+    // {
+    //   id: 9,
+    //   title: 'Hair Growth Advertisement',
+    //   description: 'Creative commercial showcasing product benefits with visual storytelling',
+    //   thumbnail: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80',
+    //   videoUrl: 'https://www.instagram.com/reel/DFeuJ8vITfM/',
+    //   platform: 'Instagram',
+    //   featured: false
+    // },
     {
       id: 10,
       title: 'Shrushti Oswal - Acting Showreel',
       description: 'Professional acting portfolio showcasing diverse performances',
-      thumbnail: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=800&q=80',
+      thumbnail: shrutiOswal,
       videoUrl: 'https://www.youtube.com/watch?v=kL3UIpMsfQg',
       platform: 'YouTube',
       featured: false

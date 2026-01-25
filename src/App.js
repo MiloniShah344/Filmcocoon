@@ -3,29 +3,33 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import About from './components/About';
-import RecentWork from './components/RecentWork';
+// import RecentWork from './components/RecentWork';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { portfolioData } from './data/portfolioData';
 import Careers from './components/Careers';
+import './styles/style.css';
 
 const App = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  
+  // ✅ FIXED: Initialize all category keys properly
   const [currentSlides, setCurrentSlides] = useState({
     'web-series': 0,
     'films': 0,
-    'micro-dramas': 0,
-    'freelance-work': 0
+    'commercial-projects': 0,
+    'direction-editing': 0,
+    'assistant-director-work': 0
   });
 
   // Recent work (3 most recent from different categories)
-  const recentWork = [
-    portfolioData['Web Series']?.[0],
-    portfolioData['Films']?.[0],
-    portfolioData['Micro Dramas']?.[0],
-  ].filter(Boolean);
+  // const recentWork = [
+  //   portfolioData['Web Series']?.[0],
+  //   portfolioData['Films']?.[0],
+  //   portfolioData['Commercial Projects']?.[0],
+  // ].filter(Boolean);
 
   // Smooth scroll to section
   const scrollToSection = (sectionId) => {
@@ -58,11 +62,23 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Carousel navigation
+  // ✅ FIXED: Carousel navigation with proper category key handling
   const navigateSlide = (category, direction) => {
-    const categoryKey = category.toLowerCase().replace(/ /g, '-');
+    // Generate the same key format used in Portfolio component
+    const categoryKey = category
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/&/g, '')
+      .replace(/'/g, '');
+    
     const categoryData = portfolioData[category];
-    const currentIndex = currentSlides[categoryKey];
+    
+    if (!categoryData) {
+      console.error(`Category not found: ${category}`);
+      return;
+    }
+    
+    const currentIndex = currentSlides[categoryKey] || 0;
     
     let newIndex;
     if (direction === 'next') {
@@ -91,7 +107,7 @@ const App = () => {
       
       <Hero scrollToSection={scrollToSection} />
       <About />
-      <RecentWork recentWork={recentWork} />
+      {/* <RecentWork recentWork={recentWork} /> */}
       <Portfolio 
         portfolioData={portfolioData}
         currentSlides={currentSlides}

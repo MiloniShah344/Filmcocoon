@@ -9,7 +9,7 @@ const Careers = () => {
     message: '',
     resume: null,
     resumeLink: '',
-    resumeType: 'upload' // 'upload' or 'link'
+    resumeType: 'upload'
   });
 
   const [status, setStatus] = useState('');
@@ -65,7 +65,6 @@ const Careers = () => {
           resumeType: 'upload'
         });
         
-        // Clear status after 5 seconds
         setTimeout(() => setStatus(''), 5000);
       } else {
         setStatus('Failed to send. Please try again.');
@@ -77,109 +76,98 @@ const Careers = () => {
   };
 
   return (
-    <section id="careers" className="py-20 px-4 sm:px-6 lg:px-8 bg-stone-50 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-orange-200 rounded-full blur-3xl opacity-20"></div>
+    <section id="careers" className="section section-bg-light">
+      <div className="section-decoration decoration-green" style={{top: 0, right: 0, width: '24rem', height: '24rem'}}></div>
       
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <span className="text-orange-600 font-semibold text-sm uppercase tracking-wider">Join the Team</span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-stone-900 mt-2 mb-4">
-            Careers at <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-800">FilmCocoon</span>
+        <div className="section-header">
+          <span className="section-badge">Join the Team</span>
+          <h2 className="section-title">
+            Careers at <span className="section-title-accent">FilmCocoon</span>
           </h2>
-          <p className="text-stone-600 text-lg max-w-2xl mx-auto">
+          <p className="section-description">
             We're always open to collaborating with passionate creatives. Apply for the position you aspire to!
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-orange-600 to-orange-800 mx-auto rounded-full mt-4"></div>
+          <div className="section-divider"></div>
         </div>
 
-        <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl">
-          <h3 className="text-2xl font-bold text-stone-900 mb-6">Apply Now</h3>
-          <form className="space-y-5" onSubmit={handleSubmit}>
-            <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-stone-700 font-semibold mb-2 text-sm">Name *</label>
+        <div className="form-container">
+          <h3 className="form-title">Apply Now</h3>
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="form-row">
+              <div className="form-group">
+                <label className="form-label">Name *</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-stone-200 rounded-xl focus:border-orange-600 focus:outline-none transition-colors"
+                  className="form-input"
                   placeholder="Your Full Name"
                 />
               </div>
               
-              <div>
-                <label className="block text-stone-700 font-semibold mb-2 text-sm">Email *</label>
+              <div className="form-group">
+                <label className="form-label">Email *</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-stone-200 rounded-xl focus:border-orange-600 focus:outline-none transition-colors"
+                  className="form-input"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-stone-700 font-semibold mb-2 text-sm">Phone (Optional)</label>
+            <div className="form-group">
+              <label className="form-label">Phone (Optional)</label>
               <input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-stone-200 rounded-xl focus:border-orange-600 focus:outline-none transition-colors"
+                className="form-input"
                 placeholder="+91 98765 43210"
               />
             </div>
             
-            <div>
-              <label className="block text-stone-700 font-semibold mb-2 text-sm">Message (Optional)</label>
+            <div className="form-group">
+              <label className="form-label">Message (Optional)</label>
               <textarea
                 name="message"
                 rows="4"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-stone-200 rounded-xl focus:border-orange-600 focus:outline-none transition-colors resize-none"
+                className="form-textarea"
                 placeholder="Tell us about yourself and the position you're interested in..."
               />
             </div>
 
-            {/* Resume Upload or Link Option */}
-            <div>
-              <label className="block text-stone-700 font-semibold mb-3 text-sm">Resume / Portfolio (Optional)</label>
+            <div className="form-group">
+              <label className="form-label">Resume / Portfolio (Optional)</label>
               
-              {/* Toggle Buttons */}
-              <div className="flex gap-3 mb-4">
+              <div className="resume-toggle">
                 <button
                   type="button"
                   onClick={() => handleResumeTypeChange('upload')}
-                  className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all ${
-                    formData.resumeType === 'upload'
-                      ? 'bg-orange-600 text-white shadow-md'
-                      : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-                  }`}
+                  className={`toggle-btn ${formData.resumeType === 'upload' ? 'active' : ''}`}
                 >
-                  <Upload className="w-4 h-4 inline mr-2" />
+                  <Upload />
                   Upload File
                 </button>
                 <button
                   type="button"
                   onClick={() => handleResumeTypeChange('link')}
-                  className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all ${
-                    formData.resumeType === 'link'
-                      ? 'bg-orange-600 text-white shadow-md'
-                      : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-                  }`}
+                  className={`toggle-btn ${formData.resumeType === 'link' ? 'active' : ''}`}
                 >
-                  <LinkIcon className="w-4 h-4 inline mr-2" />
+                  <LinkIcon />
                   Provide Link
                 </button>
               </div>
 
-              {/* Upload File Option */}
               {formData.resumeType === 'upload' && (
                 <div>
                   <input
@@ -187,20 +175,19 @@ const Careers = () => {
                     name="resume"
                     accept=".pdf,.doc,.docx"
                     onChange={handleChange}
-                    className="w-full text-stone-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-600 file:text-white hover:file:bg-orange-700 cursor-pointer"
+                    className="file-input"
                   />
-                  <p className="text-xs text-stone-500 mt-2">PDF, DOC, or DOCX (Max 5MB)</p>
+                  <p className="file-hint">PDF, DOC, or DOCX (Max 5MB)</p>
                 </div>
               )}
 
-              {/* Link Option */}
               {formData.resumeType === 'link' && (
                 <input
                   type="url"
                   name="resumeLink"
                   value={formData.resumeLink}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-stone-200 rounded-xl focus:border-orange-600 focus:outline-none transition-colors"
+                  className="form-input"
                   placeholder="https://yourportfolio.com or Google Drive link"
                 />
               )}
@@ -209,7 +196,8 @@ const Careers = () => {
             <button
               type="submit"
               disabled={status === 'Sending...'}
-              className="w-full px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold hover:shadow-xl transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="form-submit"
+              style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'}}
             >
               <Send className="w-5 h-5" />
               {status === 'Sending...' ? 'Sending...' : 'Submit Application'}
@@ -217,11 +205,7 @@ const Careers = () => {
           </form>
 
           {status && status !== 'Sending...' && (
-            <div className={`mt-4 p-4 rounded-xl text-center font-semibold ${
-              status.includes('success')
-                ? 'bg-green-100 text-green-700'
-                : 'bg-red-100 text-red-700'
-            }`}>
+            <div className={`form-status ${status.includes('success') ? 'success' : 'error'}`}>
               {status}
             </div>
           )}
