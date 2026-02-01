@@ -14,10 +14,10 @@ const About = () => {
     <section id="about" className="section section-bg-gradient">
       <div className="section-container">
         <div className="section-header">
-          <h2 className="text-5xl font-extrabold text-stone-900 mb-4 tracking-tight">
+          <h2 className="text-5xl font-extrabold text-stone-200 mb-4 tracking-tight">
             About <span className="section-title-accent">FilmCocoon</span>
           </h2>
-          <p className="text-lg sm:text-xl text-stone-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-stone-500 max-w-3xl mx-auto leading-relaxed">
             Where stories take shape. We transform uncut moments into cinematic experiences through storytelling, post-production, and creative collaboration.
           </p>
           <div className="section-divider"></div>

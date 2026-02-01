@@ -1,6 +1,9 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
-import logo from '../assets/logo.png'
+// import logo from '../assets/logo.png'
+// import logoInverted from '../assets/logo-inverted.png'
+// import logo2 from '../assets/logo2.png'
+import logo_white_bg from '../assets/logo_white_bg.png'
 
 const Header = ({ activeSection, scrollToSection, setIsDrawerOpen }) => {
   const navItems = [
@@ -18,7 +21,7 @@ const Header = ({ activeSection, scrollToSection, setIsDrawerOpen }) => {
         <div className="logo-container" onClick={() => scrollToSection('home')}>
           <div className="logo-circle">
             <img 
-              src={logo} 
+              src={logo_white_bg} 
               alt="FilmCocoon logo" 
               className="w-full h-full object-cover"
             />
