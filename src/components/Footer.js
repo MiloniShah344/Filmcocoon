@@ -1,5 +1,6 @@
 import React from 'react';
 import { Linkedin, Instagram, Youtube } from 'lucide-react';
+import logo_white_bg from '../assets/logo_white_bg.png';
 
 const Footer = ({ scrollToSection }) => {
   const quickLinks = ['Home', 'About', 'Recent Work', 'Portfolio', 'Contact', 'Careers'];
@@ -10,9 +11,16 @@ const Footer = ({ scrollToSection }) => {
         <div className="footer-grid">
           <div>
             <div className="footer-brand">
-              <div className="footer-logo">
+              {/* <div className="footer-logo">
                 FC
-              </div>
+              </div> */}
+              <div className="logo-circle">
+            <img 
+              src={logo_white_bg} 
+              alt="FilmCocoon logo" 
+              className="w-full h-full object-cover"
+            />
+          </div>
               <span className="footer-brand-text">FilmCocoon</span>
             </div>
             <p className="footer-description">
