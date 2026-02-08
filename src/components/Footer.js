@@ -3,7 +3,7 @@ import { Linkedin, Instagram, Youtube } from 'lucide-react';
 import logo_white_bg from '../assets/logo_white_bg.png';
 
 const Footer = ({ scrollToSection }) => {
-  const quickLinks = ['Home', 'About', 'Recent Work', 'Portfolio', 'Contact', 'Careers'];
+  const quickLinks = ['Home', 'About', 'Portfolio', 'Contact', 'Careers'];
 
   return (
     <footer className="footer">

@@ -6,29 +6,42 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus('Sending...');
+
     const formData = new FormData(e.target);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const phone = formData.get("phone");
-    const message = formData.get("message");
+    
+    const data = new FormData();
+    
+    // Web3Forms required fields
+    data.append('access_key', 'a9d5d928-5a12-46e0-8967-45e934f9f56c');
+    data.append('subject', `📩 New Message from ${formData.get('name')}`);
+    data.append('from_name', 'FilmCocoon Contact');
+    data.append('name', formData.get('name'));
+    data.append('email', formData.get('email'));
+    data.append('phone', formData.get('phone') || 'Not provided');
+    data.append('message', formData.get('message'));
 
     try {
-      const res = await fetch("http://localhost:4001/send-contact-mail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, message }),
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data
       });
+      console.log("res: ", res)
 
-      const data = await res.json();
-      if (data.success) {
-        setStatus("Message sent successfully!")
+      const result = await res.json();
+      console.log('Web3Forms Response:', result);
+      
+      if (result.success) {
+        setStatus('Message sent successfully! ✓');
         e.target.reset();
+        setTimeout(() => setStatus(''), 5000);
       } else {
-        setStatus("Failed to send message. Please try again.")
+        setStatus(`Failed: ${result.message || 'Please try again'}`);
+        console.log('Web3Forms error:', result);
       }
     } catch (err) {
-      setStatus("Server error. Please check backend connection.")
-      console.error(err);
+      setStatus('Network error. Please check your connection.');
+      console.error('Fetch error:', err);
     }
   }
 
@@ -123,21 +136,23 @@ const Contact = () => {
             <h3 className="form-title">Send a Message</h3>
             <form className="form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label className="form-label">Name</label>
+                <label className="form-label">Name *</label>
                 <input
                   type="text"
                   className="form-input"
                   name="name"
                   placeholder="Your Name"
+                  required
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Email</label>
+                <label className="form-label">Email *</label>
                 <input
                   type="email"
                   name="email"
                   className="form-input"
                   placeholder="your@email.com"
+                  required
                 />
               </div>
               <div className="form-group">
@@ -150,20 +165,23 @@ const Contact = () => {
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Message</label>
+                <label className="form-label">Message *</label>
                 <textarea
                   rows="5"
                   name="message"
                   className="form-textarea"
                   placeholder="Tell me about your project..."
+                  required
                 />
               </div>
-              <button type="submit" className="form-submit">
-                Send Message
+              <button type="submit" className="form-submit" disabled={status === 'Sending...'}>
+                {status === 'Sending...' ? 'Sending...' : 'Send Message'}
               </button>
 
-              {status && (
-                <p className="form-status success">{status}</p>
+              {status && status !== 'Sending...' && (
+                <p className={`form-status ${status.includes('success') ? 'success' : 'error'}`}>
+                  {status}
+                </p>
               )}
             </form>
           </div>

@@ -9,7 +9,7 @@ const Header = ({ activeSection, scrollToSection, setIsDrawerOpen }) => {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'recent-work', label: 'Recent Work' },
+    // { id: 'recent-work', label: 'Recent Work' },
     { id: 'portfolio', label: 'Portfolio' },
     { id: 'contact', label: 'Contact' },
     { id: 'careers', label: 'Careers' },
